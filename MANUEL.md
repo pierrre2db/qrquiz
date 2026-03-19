@@ -321,7 +321,7 @@ Dans l'admin → **Page d'accueil** :
 
 ### 8.4 — Configurer la question subsidiaire
 
-Dans l'admin → **Paramètres** : entrez la question subsidiaire (sert à départager en cas d'égalité).
+Dans l'admin → **Questions** (en bas de page) : entrez la question subsidiaire (sert à départager en cas d'égalité).
 
 ---
 
