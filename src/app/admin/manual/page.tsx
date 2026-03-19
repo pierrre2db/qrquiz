@@ -32,7 +32,7 @@ export default function AdminManualPage() {
         {/* Sommaire */}
         <Section title="Sommaire" color="#1E3A5F">
           <ol style={{ paddingLeft: 20, lineHeight: 2.2 }}>
-            {['Connexion & Déconnexion', 'Tableau de bord', 'Gestion des Questions (Stations)', 'QR Codes', 'Participants', 'Résultats', 'Réinitialisation du jeu'].map((t, i) => (
+            {['Connexion & Déconnexion', 'Tableau de bord', 'Gestion des Questions (Stations)', 'QR Codes', 'Participants', 'Résultats', 'Page d\'accueil projetée (/welcome)', 'Réinitialisation du jeu'].map((t, i) => (
               <li key={i} style={{ fontWeight: 500 }}>{t}</li>
             ))}
           </ol>
@@ -129,7 +129,14 @@ export default function AdminManualPage() {
             <p>Utilisez la barre de recherche (nom ou email) et le filtre de statut pour retrouver un participant.</p>
           </SubSection>
           <SubSection title="Export des données">
-            <p>Cliquez sur <b>↓ CSV</b> ou <b>↓ JSON</b> pour télécharger la liste complète des participants avec leurs données d'inscription.</p>
+            <p>Cliquez sur <b>↓ CSV</b> ou <b>↓ JSON</b> pour télécharger les données complètes :</p>
+            <ul style={{ paddingLeft: 20, marginTop: 4, fontSize: 13, color: '#555', lineHeight: 1.8 }}>
+              <li>Données d'inscription (prénom, nom, email, téléphone)</li>
+              <li>Score total et pourcentage de réussite</li>
+              <li>Réponse choisie et correction pour chaque station</li>
+              <li>Réponse à la question subsidiaire</li>
+              <li>Heure de fin de parcours</li>
+            </ul>
           </SubSection>
         </Section>
 
@@ -151,8 +158,24 @@ export default function AdminManualPage() {
           <Tip>Cliquez sur <b>↻ Actualiser</b> pour mettre à jour les résultats en temps réel.</Tip>
         </Section>
 
-        {/* 7. Réinitialisation */}
-        <Section title="7. Réinitialisation du jeu" color="#E24B4A">
+        {/* 7. Page d'accueil projetée */}
+        <Section title="7. Page d'accueil projetée (/welcome)" color="#1E3A5F">
+          <p>La page <code style={{ background: '#EEF', padding: '1px 6px', borderRadius: 4, fontSize: 12, color: '#1E3A5F' }}>/welcome</code> est conçue pour être affichée sur un projecteur ou un grand écran pendant l'événement. Elle affiche en temps réel :</p>
+          <ul style={{ paddingLeft: 20, marginTop: 8, marginBottom: 12, lineHeight: 1.9 }}>
+            <li>Le QR code d'inscription (colonne gauche)</li>
+            <li>Les derniers participants inscrits (mis à jour toutes les 3 secondes)</li>
+            <li>Le classement en direct — top 10, podium avec médailles (mis à jour toutes les 15 secondes)</li>
+          </ul>
+          <SubSection title="Configurer la page d'accueil">
+            <Step n={1} text={"Dans le menu, cliquez sur \"Page d'accueil\"."} />
+            <Step n={2} text="Renseignez le titre de l'événement, le texte d'introduction et l'URL du QR code d'inscription." />
+            <Step n={3} text='En bas de la page "Questions", saisissez la question subsidiaire (utilisée pour départager les ex-aequo).' />
+          </SubSection>
+          <Tip>Le classement utilise une fenêtre glissante de 2 heures. Si aucun joueur n'a terminé dans les 2 dernières heures, le classement global s'affiche en fallback.</Tip>
+        </Section>
+
+        {/* 8. Réinitialisation */}
+        <Section title="8. Réinitialisation du jeu" color="#E24B4A">
           <Warn>Cette opération supprime TOUTES les données de jeu (participants, réponses, réponses subsidiaires). Les questions et QR codes sont conservés.</Warn>
           <Step n={1} text='Dans le menu latéral, cliquez sur "⚠ Réinitialiser le jeu" (tout en bas).' />
           <Step n={2} text="Une modale de confirmation s'ouvre. Saisissez votre mot de passe administrateur." />

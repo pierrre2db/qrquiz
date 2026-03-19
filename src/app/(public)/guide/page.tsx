@@ -124,7 +124,7 @@ export default function PlayerGuidePage() {
           <div style={{ fontSize: 13, color: '#633806', lineHeight: 1.8 }}>
             <p style={{ margin: '0 0 8px' }}><b>Le QR code ne scanne pas</b> → Entrez le code à 3 chiffres manuellement.</p>
             <p style={{ margin: '0 0 8px' }}><b>La caméra ne s'ouvre pas</b> → Autorisez l'accès à la caméra dans les réglages de votre navigateur.</p>
-            <p style={{ margin: 0 }}><b>Vous avez perdu votre progression</b> → Réinscrivez-vous avec le même email pour retrouver votre avancement.</p>
+            <p style={{ margin: 0 }}><b>Vous avez perdu votre progression</b> → Contactez un organisateur : votre compte est lié à votre email, seul l'administrateur peut réinitialiser votre accès.</p>
           </div>
         </div>
 
