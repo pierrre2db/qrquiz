@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Question {
+  id            String   @id @default(uuid())
+  stationLabel  String   @db.VarChar(200)
+  stationCode   String   @unique @db.Char(3)
+  order         Int
+  isActive      Boolean  @default(true)
+  question      String
+  optionA       String   @db.VarChar(500)
+  optionB       String   @db.VarChar(500)
+  optionC       String   @db.VarChar(500)
+  optionD       String   @db.VarChar(500)
+  correctAnswer Int
+  explanation   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  answers       Answer[]
+}
+
+model Participant {
+  id         String            @id @default(uuid())
+  firstName  String
+  lastName   String
+  phone      String
+  email      String            @unique
+  sessionId  String
+  createdAt  DateTime          @default(now())
+  answers    Answer[]
+  subsidiary SubsidiaryAnswer?
+}
+
+model Answer {
+  id             String      @id @default(uuid())
+  participantId  String
+  stationId      String
+  selectedOption Int
+  isCorrect      Boolean
+  answeredAt     DateTime    @default(now())
+  participant    Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  station        Question    @relation(fields: [stationId], references: [id], onDelete: Cascade)
+
+  @@unique([participantId, stationId])
+}
+
+model SubsidiaryAnswer {
+  id            String      @id @default(uuid())
+  participantId String      @unique
+  answerText    String
+  answeredAt    DateTime    @default(now())
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+}
+
+model Setting {
+  key   String @id
+  value String
+}

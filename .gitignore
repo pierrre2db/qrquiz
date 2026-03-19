@@ -26,11 +26,22 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
+.env.prod
 
 # vercel
 .vercel
 
+# data (participants CSV/JSON + QR codes)
+/data
+
+# certificats mDNS locaux (dev-mobile.sh)
+/certificates
+/public/ca.crt
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma

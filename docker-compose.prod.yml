@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: qrquiz-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: qrquiz
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: qrquiz
+    volumes:
+      - qrquiz-db-data:/var/lib/postgresql/data
+    networks:
+      - qrquiz-net
+
+  app:
+    build: .
+    container_name: qrquiz-app
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://qrquiz:${POSTGRES_PASSWORD}@postgres:5432/qrquiz
+      SESSION_SECRET: ${SESSION_SECRET}
+      ADMIN_LOGIN: ${ADMIN_LOGIN}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
+      NODE_ENV: production
+      DATA_DIR: /app/data
+    volumes:
+      - qrquiz-data:/app/data
+    networks:
+      - qrquiz-net
+      - npm_network
+
+volumes:
+  qrquiz-db-data:
+  qrquiz-data:
+
+networks:
+  qrquiz-net:
+    driver: bridge
+  npm_network:
+    external: true
+    name: nginx-proxy-manager_npm-network

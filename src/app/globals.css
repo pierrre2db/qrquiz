@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #1E3A5F;
+  --color-secondary: #2E75B6;
+  --color-success: #639922;
+  --color-success-bg: #EAF3DE;
+  --color-success-border: #C0DD97;
+  --color-warning: #BA7517;
+  --color-warning-bg: #FAEEDA;
+  --color-warning-border: #FAC775;
+  --color-danger: #E24B4A;
+  --color-danger-bg: #FFEBEE;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-tertiary: #EEEEEE;
+  --border-secondary: #E0E0E0;
+  --border-tertiary: #D0D0D0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #555555;
+  --text-tertiary: #888888;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Mobile container */
+.mobile-container {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Touch targets */
+button, a, [role="button"] {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Smooth transitions */
+.transition-default {
+  transition: all 150ms ease-out;
+}
